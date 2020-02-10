@@ -1,0 +1,65 @@
+﻿@model IEnumerable<RudDmytro_INCHKIEV_TEST.Models.Book>
+
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+<h1>Books</h1>
+<div class="col-md-4">
+    <form asp-action="Books" method="get">
+        <div class="form-actions no-color">
+            <p>
+                <h3>Search</h3>
+                <input type="text" name="name" value="@ViewData["currentFilter"]" class="form-control" />
+                <div class="m-1">
+                    <input type="submit" value="Search" class="btn btn-default" /> |
+                    <a asp-action="Index">Back to Full List</a>
+                </div>
+               
+            </p>
+        </div>
+    </form>
+</div>
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.author)
+            </th>
+            
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.author)
+            </td>
+          
+           
+            <td>
+                <a asp-action="Download" asp-controller="Home" asp-route-id="@item.id">Download</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
